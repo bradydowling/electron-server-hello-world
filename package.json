@@ -1,14 +1,20 @@
 {
+  "private": true,
   "name": "electron-server-hello-world",
   "version": "0.0.1",
   "description": "An Electon app that starts a Node server cloned from git",
   "main": "main.js",
+  "workspaces": {
+    "packages": [
+      "packages/*"
+    ]
+  },
   "scripts": {
-    "package": "build --mac",
+    "package": "electron-builder --mac",
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "git clone https://github.com/heroku/node-js-sample || (cd node-js-example && git pull)",
-    "postinstall": "cd node-js-sample && npm install"
+    "preinstall": "git clone https://github.com/heroku/node-js-sample packages/node-js-sample || (cd packages/node-js-example && git pull)",
+    "postinstall": "cd packages/node-js-sample && npm install"
   },
   "repository": {
     "type": "git",
@@ -22,7 +28,7 @@
   "homepage": "https://github.com/bradydowling/electron-server-hello-world#readme",
   "devDependencies": {
     "electron": "^2.0.5",
-    "electron-builder": "^20.26.0"
+    "electron-builder": "^22.2.0"
   },
   "build": {
     "appId": "my.app.id",
@@ -32,6 +38,7 @@
     }
   },
   "dependencies": {
-    "electron-log": "^2.2.16"
+    "electron-log": "^2.2.16",
+    "node-js-sample": "0.2.0"
   }
 }
